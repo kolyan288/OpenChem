@@ -318,7 +318,7 @@ def predict(model, data_loader, eval=True):
             batch_input, batch_object = model.cast_inputs(sample_batched,
                                                           task,
                                                           use_cuda,
-                                                          for_predction=True)
+                                                          for_prediction=True)
         predicted = model(batch_input, eval=True)
         if hasattr(predicted, 'detach'):
             predicted = predicted.detach().cpu().numpy()
@@ -346,7 +346,7 @@ def predict(model, data_loader, eval=True):
         textlogger.info(
             'PREDICTION: [Time: %s, Number of samples: %d]' % (time_since(start), len(prediction))
         )
-
+    
 
 def reduce_tensor(tensor, world_size):
     r"""

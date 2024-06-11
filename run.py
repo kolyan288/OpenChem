@@ -31,7 +31,7 @@ from openchem.data.utils import sanitize_smiles
 
 def main():
     parser = argparse.ArgumentParser(description='Experiment parameters')
-    parser.add_argument("--use_cuda", default=torch.cuda.is_available(),
+    parser.add_argument("--use_cuda", default = True, #default=torch.cuda.is_available(),
                         help="Whether to train on GPU")
     parser.add_argument("--config_file", required=True,
                         help="Path to the configuration file")
@@ -57,6 +57,7 @@ def main():
                         help="Copy config file to logdir (useful in training)")
 
     args, unknown = parser.parse_known_args()
+    print(args.config_file)
 
     num_gpus = int(os.environ["WORLD_SIZE"]) \
         if "WORLD_SIZE" in os.environ else 1
@@ -74,9 +75,11 @@ def main():
     if args.mode not in ['train', 'eval', 'train_eval', 'infer', 'predict']:
         raise ValueError("Mode has to be one of "
                          "['train', 'eval', 'train_eval', 'infer', 'predict']")
+
     config_module = runpy.run_path(args.config_file)
 
     model_config = config_module.get('model_params', None)
+    print(model_config['task'])
     random.seed(args.random_seed)
     np.random.seed(args.random_seed)
     torch.manual_seed(args.random_seed)
@@ -251,9 +254,59 @@ def main():
     if args.mode == 'train':
         fit(model, lr_scheduler, train_loader, optimizer, criterion,
             model_config, eval=False, cur_epoch=cur_epoch)
+        # print('-' * 80)
+        # model.save(model.state_dict(), 'model_OpenChem.pth')
+        # print("МОДЕЛЬ В РЕЖИМЕ 'train' УСПЕШНО СОХРАНЕНА")
+        # print('-' * 80)
+
     elif args.mode == 'train_eval':
         fit(model, lr_scheduler, train_loader, optimizer, criterion,
             model_config, eval=True, val_loader=val_loader, cur_epoch=cur_epoch)
+        
+
+
+        if model_config['task'] == 'multitask':
+            if args.config_file[-4] == '1':
+                print('-' * 80)
+                torch.save(model.module.state_dict(), 'model_OpenChem_CLASSIFIER_ENSEMBLE_1.pth')
+                print("МОДЕЛЬ АНСАМБЛЯ №1 В РЕЖИМЕ 'train_eval' УСПЕШНО СОХРАНЕНА")
+                print('-' * 80)
+
+            elif args.config_file[-4] == '2':
+                print('-' * 80)
+                torch.save(model.module.state_dict(), 'model_OpenChem_CLASSIFIER_ENSEMBLE_2.pth')
+                print("МОДЕЛЬ АНСАМБЛЯ №2 В РЕЖИМЕ 'train_eval' УСПЕШНО СОХРАНЕНА")
+                print('-' * 80)
+
+            elif args.config_file[-4] == '3':
+                print('-' * 80)
+                torch.save(model.module.state_dict(), 'model_OpenChem_CLASSIFIER_ENSEMBLE_3.pth')
+                print("МОДЕЛЬ АНСАМБЛЯ №3 В РЕЖИМЕ 'train_eval' УСПЕШНО СОХРАНЕНА")
+                print('-' * 80)
+
+            elif args.config_file[-4] == '4':
+                print('-' * 80)
+                torch.save(model.module.state_dict(), 'model_OpenChem_CLASSIFIER_ENSEMBLE_4.pth')
+                print("МОДЕЛЬ АНСАМБЛЯ №4 В РЕЖИМЕ 'train_eval' УСПЕШНО СОХРАНЕНА")
+                print('-' * 80)
+
+            elif args.config_file[-4] == '5':
+                print('-' * 80)
+                torch.save(model.module.state_dict(), 'model_OpenChem_CLASSIFIER_ENSEMBLE_5.pth')
+                print("МОДЕЛЬ АНСАМБЛЯ №5 В РЕЖИМЕ 'train_eval' УСПЕШНО СОХРАНЕНА")
+                print('-' * 80)
+
+            else:
+                print('-' * 80)
+                torch.save(model.module.state_dict(), 'model_OpenChem_CLASSIFICATION.pth')
+                print("МОДЕЛЬ В РЕЖИМЕ 'train_eval' УСПЕШНО СОХРАНЕНА")
+                print('-' * 80)
+        # if model_config['task'] == 'regression':
+        #     print('-' * 80)
+        #     torch.save(model.module.state_dict(), 'model_OpenChem_REGRESSION.pth')
+        #     print("МОДЕЛЬ В РЕЖИМЕ 'train_eval' УСПЕШНО СОХРАНЕНА")
+        #     print('-' * 80)
+            
     elif args.mode == "eval":
         evaluate(model, val_loader, criterion)
     elif args.mode == "predict":

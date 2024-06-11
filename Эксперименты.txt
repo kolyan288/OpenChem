@@ -1,0 +1,81 @@
+python launch.py --nproc_per_node=1 run.py --config_file="./example_configs/logp_gcnn_config.py" --mode="train_eval" --batch_size=64 --num_epochs=50 - регрессия
+
+python launch.py --nproc_per_node=1 run.py --config_file="./example_configs/tox21_rnn_config.py" --mode="train_eval" --batch_size=64 --num_epochs=50 - классификация
+
+python launch.py --nproc_per_node=1 run.py --config_file="./example_configs/molecular_rnn.py" --mode="train_eval" --batch_size=64 --num_epochs=30 - генерация
+
+
+ЭКСПЕРИМЕНТ 1 Обучение элементов ансамбля
+
+
+python launch.py --nproc_per_node=1 EXPERIMENT_1/run.py --config_file="./EXPERIMENT_1/configs/tox21_rnn_config_1.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_1/run.py --config_file="./EXPERIMENT_1/configs/tox21_rnn_config_2.py" --mode="train_eval" --batch_size=64 --num_epochs=10 - THE BEST
+
+python launch.py --nproc_per_node=1 EXPERIMENT_1/run.py --config_file="./EXPERIMENT_1/configs/tox21_rnn_config_3.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_1/run.py --config_file="./EXPERIMENT_1/configs/tox21_rnn_config_4.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_1/run.py --config_file="./EXPERIMENT_1/configs/tox21_rnn_config_5.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_1/run.py --config_file="./EXPERIMENT_1/configs/tox21_rnn_config_6.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_1/run.py --config_file="./EXPERIMENT_1/configs/tox21_rnn_config_7.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_1/run.py --config_file="./EXPERIMENT_1/configs/tox21_rnn_config_8.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_1/run.py --config_file="./EXPERIMENT_1/configs/tox21_rnn_config_9.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_1/run.py --config_file="./EXPERIMENT_1/configs/tox21_rnn_config_10.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+
+ЭКСПЕРИМЕНТ 2 Ансамбль пяти лучших моделей первого эксперимента
+
+python launch.py --nproc_per_node=1 EXPERIMENT_2/run.py --config_file="./EXPERIMENT_2/configs/tox21_rnn_config_1.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_2/run.py --config_file="./EXPERIMENT_2/configs/tox21_rnn_config_2.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_2/run.py --config_file="./EXPERIMENT_2/configs/tox21_rnn_config_3.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_2/run.py --config_file="./EXPERIMENT_2/configs/tox21_rnn_config_4.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+python launch.py --nproc_per_node=1 EXPERIMENT_2/run.py --config_file="./EXPERIMENT_2/configs/tox21_rnn_config_5.py" --mode="train_eval" --batch_size=64 --num_epochs=10
+
+ЭКСПЕРИМЕНТ 3 Ансамбль слабо обученных моделей первого эксперимента
+
+python launch.py --nproc_per_node=1 EXPERIMENT_3/run.py --config_file="./EXPERIMENT_3/configs/tox21_rnn_config_1.py" --mode="train_eval" --batch_size=64 --num_epochs=3
+
+python launch.py --nproc_per_node=1 EXPERIMENT_3/run.py --config_file="./EXPERIMENT_3/configs/tox21_rnn_config_2.py" --mode="train_eval" --batch_size=64 --num_epochs=3
+
+python launch.py --nproc_per_node=1 EXPERIMENT_3/run.py --config_file="./EXPERIMENT_3/configs/tox21_rnn_config_3.py" --mode="train_eval" --batch_size=64 --num_epochs=3
+
+python launch.py --nproc_per_node=1 EXPERIMENT_3/run.py --config_file="./EXPERIMENT_3/configs/tox21_rnn_config_4.py" --mode="train_eval" --batch_size=64 --num_epochs=3
+
+python launch.py --nproc_per_node=1 EXPERIMENT_3/run.py --config_file="./EXPERIMENT_3/configs/tox21_rnn_config_5.py" --mode="train_eval" --batch_size=64 --num_epochs=3
+
+python launch.py --nproc_per_node=1 EXPERIMENT_3/run.py --config_file="./EXPERIMENT_3/configs/tox21_rnn_config_6.py" --mode="train_eval" --batch_size=64 --num_epochs=3
+
+python launch.py --nproc_per_node=1 EXPERIMENT_3/run.py --config_file="./EXPERIMENT_3/configs/tox21_rnn_config_7.py" --mode="train_eval" --batch_size=64 --num_epochs=3
+
+python launch.py --nproc_per_node=1 EXPERIMENT_3/run.py --config_file="./EXPERIMENT_3/configs/tox21_rnn_config_8.py" --mode="train_eval" --batch_size=64 --num_epochs=3
+
+python launch.py --nproc_per_node=1 EXPERIMENT_3/run.py --config_file="./EXPERIMENT_3/configs/tox21_rnn_config_9.py" --mode="train_eval" --batch_size=64 --num_epochs=3
+
+python launch.py --nproc_per_node=1 EXPERIMENT_3/run.py --config_file="./EXPERIMENT_3/configs/tox21_rnn_config_10.py" --mode="train_eval" --batch_size=64 --num_epochs=3
+
+
+
+ЭКСПЕРИМЕНТ 4 Обучение на трех белках
+
+
+ЭКСПЕРИМЕНТ 5 Smiles2Vec на основе Morgan Fingerprint
+
+ЭКСПЕРИМЕНТ 6 Smiles2Vec на основе Neural Fingerprint
+
+
+
+
+
+
+
+
