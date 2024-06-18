@@ -179,6 +179,16 @@ def fit(model, scheduler, train_loader, optimizer, criterion, params, eval=False
                     'Validation metrics': metrics,
                     'LR': optimizer.param_groups[0]['lr']
                 }
+                
+                tolerance = 0
+                if len(val_losses) > 1:
+                    if val_losses[-1] > val_losses[-2]:
+                        if tolerance < 3:
+                            tolerance += 1
+                        else:
+                            break
+                    else:
+                        tolerance = 0
             else:
                 info = {'Train loss': cur_loss, 'LR': optimizer.param_groups[0]['lr']}
 

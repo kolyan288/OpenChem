@@ -70,7 +70,7 @@ model_params = {
     'random_seed': 5,
     'use_clip_grad': True,
     'max_grad_norm': 10.0,
-    'batch_size': 256,
+    'batch_size': 64,
     'num_epochs': 51,
     'logdir': './logs/reactions',
     'print_every': 1,

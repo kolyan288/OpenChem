@@ -280,7 +280,7 @@ def main():
                 print('-' * 80)
                 
             else:
-                raise Exception ('Что за хуйня?')
+                raise Exception ('Ошибка')
      
     elif args.mode == "eval":
         evaluate(model, val_loader, criterion)

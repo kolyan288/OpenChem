@@ -1,6 +1,8 @@
 python launch.py --nproc_per_node=1 run.py --config_file="./example_configs/logp_gcnn_config.py" --mode="train_eval" --batch_size=64 --num_epochs=50 - регрессия
 
-python launch.py --nproc_per_node=1 run.py --config_file="./example_configs/tox21_rnn_config.py" --mode="train_eval" --batch_size=64 --num_epochs=50 - классификация
+python launch.py --nproc_per_node=1 run.py --config_file="./example_configs/tox21_rnn_config.py" --mode="train_eval" --batch_size=64 --num_epochs=50 - классификация multitask
+
+python launch.py --nproc_per_node=1 run.py --config_file="./example_configs/classifier_config.py" --mode="train_eval" --batch_size=64 --num_epochs=50 - классификация
 
 python launch.py --nproc_per_node=1 run.py --config_file="./example_configs/molecular_rnn.py" --mode="train_eval" --batch_size=64 --num_epochs=30 - генерация
 
@@ -68,11 +70,11 @@ python launch.py --nproc_per_node=1 EXPERIMENT_3/run.py --config_file="./EXPERIM
 ЭКСПЕРИМЕНТ 4 Обучение на трех белках
 
 
-ЭКСПЕРИМЕНТ 5 Smiles2Vec на основе Morgan Fingerprint
+ЭКСПЕРИМЕНТ 5 Smiles2Vec на основе Morgan Fingerprint и Mordred Fingerprint
 
 ЭКСПЕРИМЕНТ 6 Smiles2Vec на основе Neural Fingerprint
 
-
+ЭКСПЕРИМЕНТ 7 Smiles2Vec на основе ChemBERTa-10M-MTR
 
 
 

@@ -35,7 +35,7 @@ def main():
                         help="Whether to train on GPU")
     parser.add_argument("--config_file", required=True,
                         help="Path to the configuration file")
-    parser.add_argument("--mode", default='train',
+    parser.add_argument("--mode", default='train_eval',
                         help="Could be \"train\", \"eval\", \"train_eval\", \"predict\"")
     parser.add_argument('--continue_learning', dest='continue_learning',
                         action='store_true',
